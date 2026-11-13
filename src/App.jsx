@@ -223,56 +223,64 @@ export default function App() {
         <div className="full-date">{fmtFull(viewDate)}</div>
       </header>
 
-      {hero && (
-        <section className="hero" aria-label="Текущее дело">
-          <Ring done={doneCount} total={dayTasks.length} />
-          <div className="hero-txt">
-            <div className="hero-label">
-              {hero.mode === 'now' ? (<><PulseDot /> СЕЙЧАС</>) : 'ДАЛЬШЕ'}
-            </div>
-            <div className="hero-title">{hero.task.title}</div>
-            <div className="hero-sub">
-              {hero.task.start ? `${hero.task.start}${hero.task.end ? '–' + hero.task.end : ''} · ` : ''}
-              <Tag t={hero.task.tag} />
-            </div>
-          </div>
-        </section>
-      )}
-      {allDone && (
-        <section className="hero hero-done" aria-label="Все дела сделаны">
-          <span className="done-emoji">🎉</span>
-          <div className="hero-txt">
-            <div className="hero-title">Всё сделано!</div>
-            <div className="hero-sub">{doneCount} {plural(doneCount, 'дело', 'дела', 'дел')} закрыто — отдыхай</div>
-          </div>
-        </section>
-      )}
+      <div className="desk">
+        <div className="desk-main">
+          {hero && (
+            <section className="hero" aria-label="Текущее дело">
+              <Ring done={doneCount} total={dayTasks.length} />
+              <div className="hero-txt">
+                <div className="hero-label">
+                  {hero.mode === 'now' ? (<><PulseDot /> СЕЙЧАС</>) : 'ДАЛЬШЕ'}
+                </div>
+                <div className="hero-title">{hero.task.title}</div>
+                <div className="hero-sub">
+                  {hero.task.start ? `${hero.task.start}${hero.task.end ? '–' + hero.task.end : ''} · ` : ''}
+                  <Tag t={hero.task.tag} />
+                </div>
+              </div>
+            </section>
+          )}
+          {allDone && (
+            <section className="hero hero-done" aria-label="Все дела сделаны">
+              <span className="done-emoji">🎉</span>
+              <div className="hero-txt">
+                <div className="hero-title">Всё сделано!</div>
+                <div className="hero-sub">{doneCount} {plural(doneCount, 'дело', 'дела', 'дел')} закрыто — отдыхай</div>
+              </div>
+            </section>
+          )}
 
-      <main className="list">
-        {overdue.length > 0 && (
-          <>
-            <div className="sec-title">Просрочено</div>
-            {overdue.map((t) => (
-              <TaskRow key={t.id} task={{ ...t, overdue: true }} onToggle={() => toggleDone(t.id)} onEdit={() => setSheet({ task: t })} />
-            ))}
-          </>
-        )}
-        {dayTasks.length > 0 ? (
-          <>
-            <div className="sec-title">Дела дня</div>
-            {dayTasks.map((t) => (
-              <TaskRow key={t.id} task={t} onToggle={() => toggleDone(t.id)} onEdit={() => setSheet({ task: t })} />
-            ))}
-          </>
-        ) : (
-          <div className="empty">
-            <div className="empty-emoji">🗂️</div>
-            <div className="empty-title">На этот день дел нет</div>
-            <div className="empty-sub">Добавь первое дело кнопкой внизу</div>
-            <button className="btn-primary" onClick={openNew}>Добавить дело</button>
-          </div>
-        )}
-      </main>
+          <main className="list">
+            {overdue.length > 0 && (
+              <>
+                <div className="sec-title">Просрочено</div>
+                {overdue.map((t) => (
+                  <TaskRow key={t.id} task={{ ...t, overdue: true }} onToggle={() => toggleDone(t.id)} onEdit={() => setSheet({ task: t })} />
+                ))}
+              </>
+            )}
+            {dayTasks.length > 0 ? (
+              <>
+                <div className="sec-title">Дела дня</div>
+                {dayTasks.map((t) => (
+                  <TaskRow key={t.id} task={t} onToggle={() => toggleDone(t.id)} onEdit={() => setSheet({ task: t })} />
+                ))}
+              </>
+            ) : (
+              <div className="empty">
+                <div className="empty-emoji">🗂️</div>
+                <div className="empty-title">На этот день дел нет</div>
+                <div className="empty-sub">Добавь первое дело кнопкой внизу</div>
+                <button className="btn-primary" onClick={openNew}>Добавить дело</button>
+              </div>
+            )}
+          </main>
+        </div>
+
+        <aside className="desk-side">
+          <WeekCard viewDate={viewDate} tasks={doc.tasks} onPick={setViewDate} today={today} />
+        </aside>
+      </div>
 
       <button className="addbar" onClick={openNew}>
         <span className="addbar-plus">＋</span>
@@ -334,6 +342,59 @@ function TaskRow({ task, onToggle, onEdit }) {
           <Tag t={task.tag} late={task.overdue} />
         </div>
       </button>
+    </div>
+  );
+}
+
+/* ───────────── обзор недели (десктоп) ───────────── */
+const WEEK_MON = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+
+function WeekCard({ viewDate, tasks, onPick, today }) {
+  const days = useMemo(() => {
+    const d = parseDate(viewDate);
+    const dow = (d.getDay() + 6) % 7; // 0 = понедельник
+    const monday = new Date(d);
+    monday.setDate(d.getDate() - dow);
+    return Array.from({ length: 7 }, (_, i) => {
+      const dd = new Date(monday);
+      dd.setDate(monday.getDate() + i);
+      const ds = dateStr(dd);
+      const dayTasks = tasks.filter((t) => t.date === ds);
+      return {
+        ds,
+        label: WEEK_MON[i],
+        num: dd.getDate(),
+        done: dayTasks.filter((t) => t.done).length,
+        total: dayTasks.length,
+        isToday: ds === today,
+        isSel: ds === viewDate,
+        isPast: ds < today,
+      };
+    });
+  }, [tasks, viewDate, today]);
+
+  const totals = days.reduce((a, x) => ({ done: a.done + x.done, total: a.total + x.total }), { done: 0, total: 0 });
+
+  return (
+    <div className="week-card" aria-label="Обзор недели">
+      <div className="wc-head">Неделя</div>
+      <div className="wc-days">
+        {days.map((d) => (
+          <button
+            key={d.ds}
+            className={`wc-day ${d.isSel ? 'sel' : ''} ${d.isToday ? 'today' : ''} ${d.isPast ? 'past' : ''}`}
+            onClick={() => onPick(d.ds)}
+            aria-label={`${d.label} ${d.num}: ${d.done} из ${d.total} сделано`}
+            aria-pressed={d.isSel}
+          >
+            <span className="wc-label">{d.label}</span>
+            <span className="wc-num">{d.num}</span>
+            <span className="wc-bar"><i style={{ width: (d.total ? Math.round((d.done / d.total) * 100) : 0) + '%' }} /></span>
+            <span className="wc-count">{d.done}/{d.total}</span>
+          </button>
+        ))}
+      </div>
+      <div className="wc-foot"><span>за неделю</span><b>{totals.done} из {totals.total}</b></div>
     </div>
   );
 }
