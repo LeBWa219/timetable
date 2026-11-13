@@ -1,16 +1,4 @@
 {
-  "tasks": [
-    {
-      "id": "3d66f960-6fb6-4485-878b-8697bb301b02",
-      "title": "1234",
-      "date": "2026-11-13",
-      "start": "11:30",
-      "end": "12:30",
-      "tag": "work",
-      "done": false,
-      "createdAt": 1794598430127,
-      "updatedAt": 1794598440781
-    }
-  ],
-  "updatedAt": 1794598440781
+  "tasks": [],
+  "updatedAt": 1794599676893
 }
