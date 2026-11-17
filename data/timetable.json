@@ -32,7 +32,18 @@
       "done": false,
       "createdAt": 1794917148026,
       "updatedAt": 1794917148026
+    },
+    {
+      "id": "743677bc-68c5-4474-ad6b-71fdc6215b4a",
+      "title": "написать философию",
+      "date": "2026-11-17",
+      "start": null,
+      "end": null,
+      "tag": "work",
+      "done": false,
+      "createdAt": 1794917153095,
+      "updatedAt": 1794917153095
     }
   ],
-  "updatedAt": 1794917148026
+  "updatedAt": 1794917153095
 }
