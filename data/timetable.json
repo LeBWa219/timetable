@@ -29,9 +29,9 @@
       "start": null,
       "end": null,
       "tag": "work",
-      "done": false,
+      "done": true,
       "createdAt": 1794917148026,
-      "updatedAt": 1794917148026
+      "updatedAt": 1794945187749
     },
     {
       "id": "743677bc-68c5-4474-ad6b-71fdc6215b4a",
@@ -40,9 +40,9 @@
       "start": null,
       "end": null,
       "tag": "work",
-      "done": false,
+      "done": true,
       "createdAt": 1794917153095,
-      "updatedAt": 1794917153095
+      "updatedAt": 1794945186991
     },
     {
       "id": "bad25ff3-6236-4ebd-980c-faccc7d851ed",
@@ -56,5 +56,5 @@
       "updatedAt": 1794917175647
     }
   ],
-  "updatedAt": 1794917561307
+  "updatedAt": 1794945187749
 }
