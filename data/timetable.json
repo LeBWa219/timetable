@@ -4,12 +4,12 @@
       "id": "7b1dadf9-01ca-4099-9cf7-5dbc7380a65d",
       "title": "Добить сайт фиолетовой студии",
       "date": "2026-11-17",
-      "start": "00:00",
-      "end": "00:00",
+      "start": "16:03",
+      "end": "23:59",
       "tag": "work",
-      "done": false,
+      "done": true,
       "createdAt": 1794917038559,
-      "updatedAt": 1794917515120
+      "updatedAt": 1794917538645
     },
     {
       "id": "f3cd9342-5409-42fa-846e-75959216d3b4",
@@ -54,18 +54,7 @@
       "done": false,
       "createdAt": 1794917175647,
       "updatedAt": 1794917175647
-    },
-    {
-      "id": "deee6ad7-614a-4da9-90d5-d63c80597226",
-      "title": "Варя занятие",
-      "date": "2026-11-18",
-      "start": "20:00",
-      "end": "21:00",
-      "tag": "self",
-      "done": false,
-      "createdAt": 1794917499687,
-      "updatedAt": 1794917503633
     }
   ],
-  "updatedAt": 1794917515120
+  "updatedAt": 1794917538645
 }
