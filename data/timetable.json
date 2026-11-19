@@ -65,7 +65,18 @@
       "done": false,
       "createdAt": 1795091990332,
       "updatedAt": 1795091990332
+    },
+    {
+      "id": "56479946-365f-4f82-bced-a9ee0abda905",
+      "title": "Написать в фиолетовую студию",
+      "date": "2026-11-19",
+      "start": null,
+      "end": null,
+      "tag": "work",
+      "done": false,
+      "createdAt": 1795092024198,
+      "updatedAt": 1795092024198
     }
   ],
-  "updatedAt": 1795091990332
+  "updatedAt": 1795092024198
 }
