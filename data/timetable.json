@@ -54,7 +54,18 @@
       "done": true,
       "createdAt": 1794917175647,
       "updatedAt": 1795091971228
+    },
+    {
+      "id": "ba549167-87c1-4185-af1a-22ba973702a9",
+      "title": "Поговорить с Олесей про договор/админку",
+      "date": "2026-11-19",
+      "start": null,
+      "end": null,
+      "tag": "work",
+      "done": false,
+      "createdAt": 1795091990332,
+      "updatedAt": 1795091990332
     }
   ],
-  "updatedAt": 1795091972098
+  "updatedAt": 1795091990332
 }
