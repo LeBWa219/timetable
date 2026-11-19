@@ -76,7 +76,18 @@
       "done": false,
       "createdAt": 1795092024198,
       "updatedAt": 1795092024198
+    },
+    {
+      "id": "6a246aa6-40e1-4570-bfd8-e0d99be1abf3",
+      "title": "Найти примеры сайтов турбаз и сделать сайт турбазы",
+      "date": "2026-11-19",
+      "start": null,
+      "end": null,
+      "tag": "work",
+      "done": false,
+      "createdAt": 1795092045573,
+      "updatedAt": 1795092045573
     }
   ],
-  "updatedAt": 1795092024198
+  "updatedAt": 1795092045573
 }
