@@ -18,9 +18,9 @@
       "start": null,
       "end": null,
       "tag": "work",
-      "done": true,
+      "done": false,
       "createdAt": 1794917122953,
-      "updatedAt": 1795091972098
+      "updatedAt": 1795212168479
     },
     {
       "id": "cfd6a01d-4db1-4ecb-be48-626697674699",
@@ -89,5 +89,5 @@
       "updatedAt": 1795092045573
     }
   ],
-  "updatedAt": 1795212161686
+  "updatedAt": 1795212168479
 }
